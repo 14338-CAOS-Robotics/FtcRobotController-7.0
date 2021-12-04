@@ -6,21 +6,23 @@ import java.lang.Math;
 
 public class HolonomicDrive {
     String motorRotationDirection;
-    DcMotor FrontRightMotor, FrontLeftMotor, BackRightMotor, BackLeftMotor, LiftMotor;
-    CRServo LeftArm, RightArm, CMotor1, CMotor2;
+    DcMotor FrontRightMotor, FrontLeftMotor, BackRightMotor, BackLeftMotor;
 
-    public HolonomicDrive(String motorDirection, DcMotor FrontRight, DcMotor FrontLeft, DcMotor BackRight, DcMotor BackLeft, DcMotor LiftMotor, CRServo LeftArm, CRServo RightArm, CRServo C1, CRServo C2){
+    public HolonomicDrive(DcMotor FrontRight, DcMotor FrontLeft, DcMotor BackRight, DcMotor BackLeft){
+        motorRotationDirection = "CLOCKWISE";
+        FrontRightMotor = FrontRight;
+        FrontLeftMotor = FrontLeft;
+        BackRightMotor = BackRight;
+        BackLeftMotor = BackLeft;
+    }
+
+    public HolonomicDrive(String motorDirection, DcMotor FrontRight, DcMotor FrontLeft, DcMotor BackRight, DcMotor BackLeft){
         if(motorDirection.equals("COUNTER-CLOCKWISE")){
             motorRotationDirection = "COUNTER-CLOCKWISE";
             FrontRightMotor = FrontRight;
             FrontLeftMotor = FrontLeft;
             BackRightMotor = BackRight;
             BackLeftMotor = BackLeft;
-            LiftMotor = this.liftMotor;
-            LeftArm = this.LeftArm;
-            RightArm = this.RightArm;
-            CMotor1 = C1;
-            CMotor2 = C2;
         }
         else {//"CLOCKWISE"
             motorRotationDirection = "CLOCKWISE";
@@ -28,11 +30,6 @@ public class HolonomicDrive {
             FrontLeftMotor = FrontLeft;
             BackRightMotor = BackRight;
             BackLeftMotor = BackLeft;
-            LiftMotor = this.liftMotor;
-            LeftArm = this.LeftArm;
-            RightArm = this.RightArm;
-            CMotor1 = C1;
-            CMotor2 = C2;
         }
     }
 
@@ -117,30 +114,5 @@ public class HolonomicDrive {
         FrontLeftMotor.setPower(0);
         BackRightMotor.setPower(0);
         BackLeftMotor.setPower(0);
-    }
-    public void raiseArms() {
-            LiftMotor.setPower(0.5);
-    }
-    public void lowerArms() {
-        LiftMotor.setPower(-0.5);
-    }
-    public void resetArms() {
-        LiftMotor.setPower(0);
-    }
-    public void openBasket() {
-        LeftArm.setPower(-0.5)
-        thread.sleep(100);
-        LiftMotor.setPower(0);
-    }
-    public void shutBasket() {
-        LiftMotor.setPower(0.5);
-        thread.sleep(100);
-        LiftMotor.setPower(0);
-    }
-    public void spinCarousel(){
-        LiftMotor.setPower(0.5);
-    }
-    public void stopSpinningCarousel(){
-        LiftMotor.setPower(0);
     }
 }

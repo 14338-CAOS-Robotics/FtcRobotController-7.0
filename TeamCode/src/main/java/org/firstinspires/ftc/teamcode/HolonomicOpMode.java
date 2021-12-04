@@ -4,9 +4,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
-
+import com.qualcomm.robotcore.hardware.CRServo;
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
  * An OpMode is a 'program' that runs in either the autonomous or the teleop period of an FTC match.
@@ -28,7 +29,9 @@ public class HolonomicOpMode extends OpMode
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor  FrontRightMotor, FrontLeftMotor, BackRightMotor, BackLeftMotor, LiftMotor;
-    private CRServo  LeftArm, RightArm, CMotor1, CMotor2;
+    private CRServo CMotor1, CMotor2;
+
+    private Servo LeftArm, RightArm;
     HolonomicDrive holonomicDrive;
 
     /*
@@ -46,10 +49,10 @@ public class HolonomicOpMode extends OpMode
         BackRightMotor  = hardwareMap.get(DcMotor.class, "back_right_drive");
         BackLeftMotor = hardwareMap.get(DcMotor.class, "back_left_drive");
         LiftMotor = hardwareMap.get(DcMotor.class, "lift_motor");
-        LeftArm = hardwareMap.get(CrServo.class, "left_arm");
-        RightArm = hardwareMap.get(CrServo.class, "right_arm");
-        CMotor1 = hardwareMap.get(CrServo.class, "carousel_motor_1");
-        CMotor2 = hardwareMap.get(CrServo.class, "carousel_motor_2");
+        LeftArm = hardwareMap.get(Servo.class, "left_arm");
+        RightArm = hardwareMap.get(Servo.class, "right_arm");
+        CMotor1 = hardwareMap.get(CRServo.class, "carousel_motor_1");
+        CMotor2 = hardwareMap.get(CRServo.class, "carousel_motor_2");
 
         holonomicDrive = new HolonomicDrive(FrontRightMotor, FrontLeftMotor, BackRightMotor, BackLeftMotor);
 
@@ -94,48 +97,67 @@ public class HolonomicOpMode extends OpMode
         boolean RBIsPressed = false;
         boolean LB_1Button = gamepad1.left_bumper;
         boolean LBIsPressed = false;
-        boolean RT_1Button = gamepad1.right_trigger;
-        boolean RTIsPressed = false;
-        boolean LT_1Button = gamepad1.left_trigger;
-        boolean RTIsPressed = false;
-        if(Y_1Button == true && YIsPressed == false){
-            YIsPressed = true;
-            holonomicDrive.raiseArms();
 
-        } else if(Y_1Button == true) {
-            YIsPressed == false;
-            holonomicDrive.resetArms();
-        }
-        if(A_1Button == true && AIsPressed == false){
-            AIsPressed = true;
-            holonomicDrive.lowerArms();
+        // Raise Arms or Lower Arms
+//        if(Y_1Button == true && YIsPressed == false){
+//            YIsPressed = true;
+//            holonomicDrive.raiseArms();
+//
+//        } else if(Y_1Button == true) {
+//            YIsPressed == false;
+//            holonomicDrive.resetArms();
+//        }
+//        if(A_1Button == true && AIsPressed == false){
+//            AIsPressed = true;
+//            holonomicDrive.lowerArms();
+//
+//        } else if(Y_1Button == true) {
+//            AIsPressed == false;
+//            holonomicDrive.resetArms();
+//        }
 
-        } else if(Y_1Button == true) {
-            AIsPressed == false;
-            holonomicDrive.resetArms();
-        }
+        // Control arms holding the element
+
+        // Close wheels
         if(X_1Button == true && XIsPressed == false){
             XIsPressed = true;
-            holonomicDrive.openBasket();
-
-        } else if(Y_1Button == true) {
-            XIsPressed == false;
+            LeftArm.setPosition(0.3);
+            RightArm.setPosition(0.3);
         }
-        if(B_1Button == true && BIsPressed == false){
-            BIsPressed = true;
-            holonomicDrive.closeBasket();
-
-        } else if(Y_1Button == true) {
-            BIsPressed == false;
+        else if(X_1Button == false){
+            XIsPressed = true;
         }
-        if(RT_1Button == true && RTIsPressed == false){
-            RTIsPressed = true;
-            holonomicDrive.spinCarousel();
 
-        } else if(Y_1Button == true) {
-            RTIsPressed == false;
-            holonomicDrive.stopSpinningCarousel();
+        //Open
+        if(Y_1Button == true && YIsPressed == false) {
+            YIsPressed = true;
+            LeftArm.setPosition(0.15);
+            RightArm.setPosition(0.15);
         }
+        else if(Y_1Button == false) {
+            YIsPressed = true;
+        }
+
+
+
+        if(LB_1Button == true && LBIsPressed == false){
+            LBIsPressed = true;
+            CMotor1.setPower(0.5);
+            CMotor2.setPower(0.5);
+
+        }
+        else if(LB_1Button == false){
+            LBIsPressed = false;
+        }
+        if(RB_1Button == true && RBIsPressed == false) {
+            RBIsPressed = true;
+            CMotor2.setPower(0);
+            CMotor1.setPower(0);
+        }
+        else if(RB_1Button == false) {
+            RBIsPressed = false;
+        }
+
         holonomicDrive.teleopDrive(x,y,z);
 
         // Show the elapsed game time and wheel power.
