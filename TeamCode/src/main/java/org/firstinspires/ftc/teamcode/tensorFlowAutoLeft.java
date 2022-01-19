@@ -218,7 +218,7 @@ public class tensorFlowAutoLeft extends LinearOpMode {
                 }
                 // Execute movements
                 runtime.reset();
-                holonomicDrive.autoDrive(330, 0.5);
+                holonomicDrive.autoDrive(0, 0.5);
                 while (opModeIsActive() && runtime.seconds() < 2) {
 
                 }
