@@ -218,26 +218,61 @@ public class tensorFlowAutoLeft extends LinearOpMode {
                 }
                 // Execute movements
                 runtime.reset();
-                holonomicDrive.autoDrive(0, 0.5);
+                holonomicDrive.autoDrive(180, 0.5);
                 while (opModeIsActive() && runtime.seconds() < 2) {
 
                 }
                 holonomicDrive.stopMoving();
                 runtime.reset();
 
-                Gyro.rotate(45, 0.3);
+
+                //Gyro.rotate(-45, 0.3);
+                telemetry.addData("Gyro ", Gyro.imu.getAngularOrientation());
+                telemetry.update();
+
+                FrontLeftMotor.setPower(-0.5);
+                FrontRightMotor.setPower(-0.5);
+                BackLeftMotor.setPower(-0.5);
+                BackRightMotor.setPower(-0.5);
+                while (opModeIsActive() && runtime.seconds() < 0.85) {
+
+                }
+                holonomicDrive.stopMoving();
+
 
                 // Move Lift
-                if (inLeft) {
-                    LiftMotor.setTargetPosition(liftPos[objPosition + 1]);
-                    LiftMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-                    LiftMotor.setPower(0.5);
+                //if (inLeft) {
+                LiftMotor.setTargetPosition(liftPos[3]);
+                LiftMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+                LiftMotor.setPower(0.5);
+                runtime.reset();
+                while (opModeIsActive() && runtime.seconds() < 2) {
                 }
+                //}
                 //Deploy
-                intakeServo.setPower(-0.5);
-                while (opModeIsActive() && runtime.seconds() < 3) {
+
+                intakeServo.setPower(-1);
+                runtime.reset();
+                while (opModeIsActive() && runtime.seconds() < 4) {
                 }
                 intakeServo.setPower(0);
+
+
+                runtime.reset();
+                holonomicDrive.autoDrive(270, 0.5);
+                while (opModeIsActive() && runtime.seconds() < 1.75) {
+
+                }
+                holonomicDrive.stopMoving();
+                sleep(500);
+
+                runtime.reset();
+                holonomicDrive.autoDrive(0, 0.9);
+                while (opModeIsActive() && runtime.seconds() < 2) {
+
+                }
+                holonomicDrive.stopMoving();
+                stop();
 
             }
         }
