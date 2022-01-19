@@ -1,0 +1,12 @@
+org/firstinspires/ftc/teamcode/HolonomicDrive.java
+ org.firstinspires.ftc.teamcode.HolonomicDrive
+org/firstinspires/ftc/teamcode/gyro.java
+ org.firstinspires.ftc.teamcode.gyro
+org/firstinspires/ftc/teamcode/HolonomicOpMode.java
+ org.firstinspires.ftc.teamcode.HolonomicOpMode
+org/firstinspires/ftc/teamcode/HolonomicAutonomousOpMode.java
+ org.firstinspires.ftc.teamcode.HolonomicAutonomousOpMode
+org/firstinspires/ftc/teamcode/tensorFlowAutoLeft.java
+ org.firstinspires.ftc.teamcode.tensorFlowAutoLeft
+org/firstinspires/ftc/teamcode/BuildConfig.java
+ org.firstinspires.ftc.teamcode.BuildConfig

@@ -1232,7 +1232,9 @@ int raw color_fragment_shader 0x0
 int raw cube_mesh_fragment_shader 0x0
 int raw cube_mesh_vertex_shader 0x0
 int raw errormessage 0x0
+int raw gold 0x0
 int raw nxtstartupsound 0x0
+int raw silver 0x0
 int raw simple_vertex_shader 0x0
 int raw ss_alarm 0x0
 int raw ss_bb8_down 0x0
@@ -1298,6 +1300,7 @@ int string about_build_time 0x0
 int string about_ch_os_version 0x0
 int string about_dh_os_version 0x0
 int string about_library_version 0x0
+int string about_menu_item 0x0
 int string about_network_connection_info 0x0
 int string about_network_protocol_version 0x0
 int string about_wifi_connected 0x0
@@ -1370,6 +1373,7 @@ int string availableModuleListCaption 0x0
 int string availableTemplateListCaption 0x0
 int string batteryLevelLabel 0x0
 int string blocks_activity 0x0
+int string blocks_menu_item 0x0
 int string bluetoothLabel 0x0
 int string buttonExitWithoutSaving 0x0
 int string buttonNameAdd 0x0
@@ -1465,6 +1469,7 @@ int string configurationNotSaved 0x0
 int string configureFromTemplate 0x0
 int string configure_activity 0x0
 int string configure_menu_item 0x0
+int string configure_robot_menu_item 0x0
 int string configure_settings 0x0
 int string confirmConfigDeleteMessage 0x0
 int string confirmConfigDeleteTitle 0x0
@@ -1529,6 +1534,7 @@ int string errorOpModeStuck 0x0
 int string errorParsingConfiguration 0x0
 int string errorScanningDevicesTitle 0x0
 int string error_text_error 0x0
+int string exit_menu_item 0x0
 int string expansionHubDisplayName 0x0
 int string expansionHubFirmwareUpdateMessage 0x0
 int string file_activate_button 0x0
@@ -1554,6 +1560,7 @@ int string incompatibleAppsError 0x0
 int string input_name_hint 0x0
 int string input_name_label 0x0
 int string inspection_activity 0x0
+int string inspection_mode_menu_item 0x0
 int string launch_wifi_settings 0x0
 int string led_description 0x0
 int string legacy_controller_name 0x0
@@ -1720,6 +1727,7 @@ int string pref_device_name_rc_display 0x0
 int string pref_device_name_tracking 0x0
 int string pref_dh_os_version_code 0x0
 int string pref_ds_supports_5_ghz 0x0
+int string pref_ftc_season_year_of_current_rc 0x0
 int string pref_gamepad_user1_type_key 0x0
 int string pref_gamepad_user2_type_key 0x0
 int string pref_hardware_config_filename 0x0
@@ -1811,6 +1819,7 @@ int string prefedit_wifi_automute 0x0
 int string prefedit_wifi_automute_summary 0x0
 int string preferred_imu_name 0x0
 int string program_and_manage_activity 0x0
+int string program_and_manage_menu_item 0x0
 int string progressPleaseWait 0x0
 int string progressUpdatingDeviceFirmware 0x0
 int string quotes 0x0
@@ -1818,6 +1827,7 @@ int string readOnlyConfigFeedback 0x0
 int string readOnlyExplanation 0x0
 int string readXML_text 0x0
 int string rescanButton_text 0x0
+int string restart_robot_menu_item 0x0
 int string restore_settings 0x0
 int string rev_20_hd_hex_name 0x0
 int string rev_40_hd_hex_name 0x0
@@ -1878,6 +1888,7 @@ int string servo_port 0x0
 int string setWifiChannelFailure 0x0
 int string setWifiChannelSuccess 0x0
 int string settings_activity 0x0
+int string settings_menu_item 0x0
 int string standard_servo_description 0x0
 int string status_bar_notification_info_overflow 0x0
 int string stringManufacturer 0x0
@@ -1944,8 +1955,10 @@ int string toastRobotSetupComplete 0x0
 int string toastSaved 0x0
 int string toastWebViewDownloadFile 0x0
 int string toastWebViewDownloadsComplete 0x0
+int string toastWifiConfigurationComplete 0x0
 int string toastWifiP2pChannelChangeRequestedDS 0x0
 int string toastWifiP2pRememberedGroupsCleared 0x0
+int string toastWifiUpBeforeProgrammingMode 0x0
 int string tokenThemeBlue 0x0
 int string tokenThemeGreen 0x0
 int string tokenThemeOrange 0x0
@@ -2005,6 +2018,12 @@ int style Animation_AppCompat_DropDownUp 0x0
 int style Animation_AppCompat_Tooltip 0x0
 int style AppBaseTheme 0x0
 int style AppTheme 0x0
+int style AppThemeBlueRC 0x0
+int style AppThemeGreenRC 0x0
+int style AppThemeOrangeRC 0x0
+int style AppThemePurpleRC 0x0
+int style AppThemeRedRC 0x0
+int style AppThemeTealRC 0x0
 int style AppTheme_Blue 0x0
 int style AppTheme_Green 0x0
 int style AppTheme_Orange 0x0
@@ -2835,6 +2854,7 @@ int styleable ViewStubCompat_android_layout 2
 int xml advanced_rc_settings 0x0
 int xml app_settings 0x0
 int xml builtinwebcamcalibrations 0x0
+int xml device_filter 0x0
 int xml file_provider_paths 0x0
 int xml ftc_about_activity 0x0
 int xml ftc_about_activity_rc 0x0

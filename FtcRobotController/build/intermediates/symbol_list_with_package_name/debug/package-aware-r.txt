@@ -1233,7 +1233,9 @@ raw color_fragment_shader
 raw cube_mesh_fragment_shader
 raw cube_mesh_vertex_shader
 raw errormessage
+raw gold
 raw nxtstartupsound
+raw silver
 raw simple_vertex_shader
 raw ss_alarm
 raw ss_bb8_down
@@ -1299,6 +1301,7 @@ string about_build_time
 string about_ch_os_version
 string about_dh_os_version
 string about_library_version
+string about_menu_item
 string about_network_connection_info
 string about_network_protocol_version
 string about_wifi_connected
@@ -1371,6 +1374,7 @@ string availableModuleListCaption
 string availableTemplateListCaption
 string batteryLevelLabel
 string blocks_activity
+string blocks_menu_item
 string bluetoothLabel
 string buttonExitWithoutSaving
 string buttonNameAdd
@@ -1466,6 +1470,7 @@ string configurationNotSaved
 string configureFromTemplate
 string configure_activity
 string configure_menu_item
+string configure_robot_menu_item
 string configure_settings
 string confirmConfigDeleteMessage
 string confirmConfigDeleteTitle
@@ -1530,6 +1535,7 @@ string errorOpModeStuck
 string errorParsingConfiguration
 string errorScanningDevicesTitle
 string error_text_error
+string exit_menu_item
 string expansionHubDisplayName
 string expansionHubFirmwareUpdateMessage
 string file_activate_button
@@ -1555,6 +1561,7 @@ string incompatibleAppsError
 string input_name_hint
 string input_name_label
 string inspection_activity
+string inspection_mode_menu_item
 string launch_wifi_settings
 string led_description
 string legacy_controller_name
@@ -1721,6 +1728,7 @@ string pref_device_name_rc_display
 string pref_device_name_tracking
 string pref_dh_os_version_code
 string pref_ds_supports_5_ghz
+string pref_ftc_season_year_of_current_rc
 string pref_gamepad_user1_type_key
 string pref_gamepad_user2_type_key
 string pref_hardware_config_filename
@@ -1812,6 +1820,7 @@ string prefedit_wifi_automute
 string prefedit_wifi_automute_summary
 string preferred_imu_name
 string program_and_manage_activity
+string program_and_manage_menu_item
 string progressPleaseWait
 string progressUpdatingDeviceFirmware
 string quotes
@@ -1819,6 +1828,7 @@ string readOnlyConfigFeedback
 string readOnlyExplanation
 string readXML_text
 string rescanButton_text
+string restart_robot_menu_item
 string restore_settings
 string rev_20_hd_hex_name
 string rev_40_hd_hex_name
@@ -1879,6 +1889,7 @@ string servo_port
 string setWifiChannelFailure
 string setWifiChannelSuccess
 string settings_activity
+string settings_menu_item
 string standard_servo_description
 string status_bar_notification_info_overflow
 string stringManufacturer
@@ -1945,8 +1956,10 @@ string toastRobotSetupComplete
 string toastSaved
 string toastWebViewDownloadFile
 string toastWebViewDownloadsComplete
+string toastWifiConfigurationComplete
 string toastWifiP2pChannelChangeRequestedDS
 string toastWifiP2pRememberedGroupsCleared
+string toastWifiUpBeforeProgrammingMode
 string tokenThemeBlue
 string tokenThemeGreen
 string tokenThemeOrange
@@ -2006,6 +2019,12 @@ style Animation_AppCompat_DropDownUp
 style Animation_AppCompat_Tooltip
 style AppBaseTheme
 style AppTheme
+style AppThemeBlueRC
+style AppThemeGreenRC
+style AppThemeOrangeRC
+style AppThemePurpleRC
+style AppThemeRedRC
+style AppThemeTealRC
 style AppTheme_Blue
 style AppTheme_Green
 style AppTheme_Orange
@@ -2410,6 +2429,7 @@ styleable ViewStubCompat android_id android_inflatedId android_layout
 xml advanced_rc_settings
 xml app_settings
 xml builtinwebcamcalibrations
+xml device_filter
 xml file_provider_paths
 xml ftc_about_activity
 xml ftc_about_activity_rc
