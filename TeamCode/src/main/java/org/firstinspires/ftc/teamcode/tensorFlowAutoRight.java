@@ -60,7 +60,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
  * is explained below.
  */
 @Autonomous(name = "Concept: TensorFlow Object Detection Webcam", group = "Concept")
-public class tensorFlowAutoLeft extends LinearOpMode {
+public class tensorFlowAutoRight extends LinearOpMode {
     /* Note: This sample uses the all-objects Tensor Flow model (FreightFrenzy_BCDM.tflite), which contains
      * the following 4 detectable objects
      *  0: Ball,
@@ -221,7 +221,7 @@ public class tensorFlowAutoLeft extends LinearOpMode {
                 }
                 // Execute movements
                 runtime.reset();
-                holonomicDrive.autoDrive(180, 0.5);
+                holonomicDrive.autoDrive(0, 0.5);
                 while (opModeIsActive() && runtime.seconds() < 2) {
 
                 }
@@ -245,12 +245,12 @@ public class tensorFlowAutoLeft extends LinearOpMode {
 
                 // Move Lift
                 if (inLeft) {
-                LiftMotor.setTargetPosition(liftPos[1]);
-                LiftMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-                LiftMotor.setPower(0.5);
-                runtime.reset();
-                while (opModeIsActive() && runtime.seconds() < 2) {
-                }
+                    LiftMotor.setTargetPosition(liftPos[1]);
+                    LiftMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+                    LiftMotor.setPower(0.5);
+                    runtime.reset();
+                    while (opModeIsActive() && runtime.seconds() < 2) {
+                    }
                 }
                 if (inMiddle) {
                     LiftMotor.setTargetPosition(liftPos[2]);
