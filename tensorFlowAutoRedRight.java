@@ -221,7 +221,7 @@ public class tensorFlowAutoRight extends LinearOpMode {
                 }
                 // Execute movements
                 runtime.reset();
-                holonomicDrive.autoDrive(0, 0.5);
+                holonomicDrive.autoDrive(180, 0.5);
                 while (opModeIsActive() && runtime.seconds() < 2) {
 
                 }
@@ -278,7 +278,7 @@ public class tensorFlowAutoRight extends LinearOpMode {
 
 
                 runtime.reset();
-                holonomicDrive.autoDrive(90, 0.5);
+                holonomicDrive.autoDrive(270, 0.5);
                 while (opModeIsActive() && runtime.seconds() < 1.75) {
 
                 }
@@ -286,7 +286,7 @@ public class tensorFlowAutoRight extends LinearOpMode {
                 sleep(500);
 
                 runtime.reset();
-                holonomicDrive.autoDrive(180, 0.9);
+                holonomicDrive.autoDrive(0, 0.9);
                 while (opModeIsActive() && runtime.seconds() < 2) {
 
                 }
