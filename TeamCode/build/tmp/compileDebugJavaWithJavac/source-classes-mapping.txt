@@ -2,12 +2,22 @@ org/firstinspires/ftc/teamcode/HolonomicDrive.java
  org.firstinspires.ftc.teamcode.HolonomicDrive
 org/firstinspires/ftc/teamcode/gyro.java
  org.firstinspires.ftc.teamcode.gyro
+org/firstinspires/ftc/teamcode/ParkRedLeft.java
+ org.firstinspires.ftc.teamcode.ParkRedLeft
 org/firstinspires/ftc/teamcode/HolonomicOpMode.java
  org.firstinspires.ftc.teamcode.HolonomicOpMode
 org/firstinspires/ftc/teamcode/HolonomicAutonomousOpMode.java
  org.firstinspires.ftc.teamcode.HolonomicAutonomousOpMode
+org/firstinspires/ftc/teamcode/BlueRightPark.java
+ org.firstinspires.ftc.teamcode.BlueRightPark
 org/firstinspires/ftc/teamcode/AutoTest.java
  org.firstinspires.ftc.teamcode.AutoTest
+org/firstinspires/ftc/teamcode/parkCarouselBlueRight.java
+ org.firstinspires.ftc.teamcode.parkCarouselBlueRight
+org/firstinspires/ftc/teamcode/TensorFlowRedRight.java
+ org.firstinspires.ftc.teamcode.TensorFlowRedRight
+org/firstinspires/ftc/teamcode/ParkCarouselRedLeft.java
+ org.firstinspires.ftc.teamcode.ParkCarouselRedLeft
 org/firstinspires/ftc/teamcode/tensorFlowAutoLeft.java
  org.firstinspires.ftc.teamcode.tensorFlowAutoLeft
 org/firstinspires/ftc/teamcode/BuildConfig.java

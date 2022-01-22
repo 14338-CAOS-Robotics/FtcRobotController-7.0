@@ -59,7 +59,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "Concept: TensorFlow Object Detection Webcam", group = "Concept")
+@Autonomous(name = "Tensor Flow Blue Auto", group = "Blue")
 public class tensorFlowAutoLeft extends LinearOpMode {
     /* Note: This sample uses the all-objects Tensor Flow model (FreightFrenzy_BCDM.tflite), which contains
      * the following 4 detectable objects
@@ -85,6 +85,7 @@ public class tensorFlowAutoLeft extends LinearOpMode {
     double leftBound = 240;
     double rightBound = 480;
     double leftPos = 0;
+    double leftVal = 0;
     boolean inLeft = false;
     boolean inMiddle = false;
     boolean inRight = false;
@@ -176,12 +177,13 @@ public class tensorFlowAutoLeft extends LinearOpMode {
             // to artificially zoom in to the center of image.  For best results, the "aspectRatio" argument
             // should be set to the value of the images used to create the TensorFlow Object Detection model
             // (typically 16/9).
-            tfod.setZoom(2.5, 16.0 / 9.0);
+            tfod.setZoom(1.0, 16.0 / 9.0);
         }
 
         /** Wait for the game to begin */
         telemetry.addData(">", "Press Play to start op mode");
         telemetry.update();
+        waitForStart();
 
         if (opModeIsActive()) {
             while (opModeIsActive()) {
@@ -198,6 +200,7 @@ public class tensorFlowAutoLeft extends LinearOpMode {
                             telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
                             telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
                                     recognition.getLeft(), recognition.getTop());
+                            leftVal = recognition.getLeft();
                             telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
                                     recognition.getRight(), recognition.getBottom());
                             leftPos = recognition.getLeft();
@@ -206,48 +209,70 @@ public class tensorFlowAutoLeft extends LinearOpMode {
                         telemetry.update();
                     }
                 }
-                waitForStart();
+                //waitForStart();
 
                 // Create and store variable of its position with if statements
-                if (leftPos < leftBound) {
-                    objPosition = 0;
-                } else if (rightBound > leftPos) {
-                    objPosition = 2;
-                } else if (leftPos > leftBound && rightBound < leftPos) {
-                    objPosition = 1;
+                if (leftVal > 150 && leftVal < 400) {
+                    objPosition = 2; // Middle
+                } else if (leftVal >= 400) {
+                    objPosition = 3; // Far right
+                } else{
+                    objPosition = 1; // Far left
                 }
+                telemetry.addData("Location: ", objPosition);
+                telemetry.addData("LeftValue: ", leftVal);
+                telemetry.update();
+                //sleep(50000);
+
+
                 // Execute movements
                 runtime.reset();
                 holonomicDrive.autoDrive(180, 0.5);
-                while (opModeIsActive() && runtime.seconds() < 2) {
+                while (opModeIsActive() && runtime.seconds() < 2.95) {
 
                 }
                 holonomicDrive.stopMoving();
                 runtime.reset();
 
+                runtime.reset();
+                holonomicDrive.autoDrive(0, 0.5);
+                while (opModeIsActive() && runtime.seconds() < 0.45) {
+
+                }
+                holonomicDrive.stopMoving();
+                runtime.reset();
 
                 //Gyro.rotate(-45, 0.3);
-                telemetry.addData("Gyro ", Gyro.imu.getAngularOrientation());
+                telemetry.addData("Location: ", objPosition);
                 telemetry.update();
 
                 FrontLeftMotor.setPower(-0.5);
                 FrontRightMotor.setPower(-0.5);
                 BackLeftMotor.setPower(-0.5);
                 BackRightMotor.setPower(-0.5);
-                while (opModeIsActive() && runtime.seconds() < 0.85) {
+                while (opModeIsActive() && runtime.seconds() < 0.95) {
 
                 }
                 holonomicDrive.stopMoving();
 
 
+
                 // Move Lift
                 //if (inLeft) {
-                LiftMotor.setTargetPosition(liftPos[3]);
+                LiftMotor.setTargetPosition(liftPos[objPosition]);
                 LiftMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
                 LiftMotor.setPower(0.5);
                 runtime.reset();
                 while (opModeIsActive() && runtime.seconds() < 2) {
                 }
+
+
+                runtime.reset();
+                holonomicDrive.autoDrive(180, 0.5);
+                while (opModeIsActive() && runtime.seconds() < 0.35) {
+
+                }
+                holonomicDrive.stopMoving();
                 //}
                 //Deploy
 
@@ -269,6 +294,13 @@ public class tensorFlowAutoLeft extends LinearOpMode {
                 runtime.reset();
                 holonomicDrive.autoDrive(0, 0.9);
                 while (opModeIsActive() && runtime.seconds() < 2) {
+
+                }
+                holonomicDrive.stopMoving();
+
+                runtime.reset();
+                holonomicDrive.autoDrive(270, 0.5);
+                while (opModeIsActive() && runtime.seconds() < 1) {
 
                 }
                 holonomicDrive.stopMoving();
