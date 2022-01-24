@@ -83,6 +83,17 @@ public class HolonomicOpMode extends OpMode
 
         holonomicDrive = new HolonomicDrive(FrontRightMotor, FrontLeftMotor, BackRightMotor, BackLeftMotor);
 
+        FrontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        FrontLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        BackRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        BackLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        LiftMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        LiftMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        LiftMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+
+        //LiftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
 
         // Tell the driver that initialization is complete.
         telemetry.addData("Status", "Initialized");
@@ -93,12 +104,7 @@ public class HolonomicOpMode extends OpMode
      */
     @Override
     public void init_loop() {
-        LiftMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        LiftMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        //LiftMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        LiftMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
 
-        //LiftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
     }
 
