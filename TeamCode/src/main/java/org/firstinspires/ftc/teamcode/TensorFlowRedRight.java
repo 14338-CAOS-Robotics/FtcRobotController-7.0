@@ -88,7 +88,6 @@ public class TensorFlowRedRight extends LinearOpMode {
     double leftVal = 0;
     boolean inLeft = false;
     boolean inMiddle = false;
-    // This is a comment
     boolean inRight = false;
     private ElapsedTime runtime = new ElapsedTime();
 
