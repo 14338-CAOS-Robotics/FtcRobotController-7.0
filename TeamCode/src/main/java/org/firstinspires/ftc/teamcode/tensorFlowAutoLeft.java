@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -59,7 +60,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "Tensor Flow Blue Auto", group = "Blue")
+@Autonomous(name = "Full Left Blue Auto", group = "Blue")
 public class tensorFlowAutoLeft extends LinearOpMode {
     /* Note: This sample uses the all-objects Tensor Flow model (FreightFrenzy_BCDM.tflite), which contains
      * the following 4 detectable objects
@@ -89,6 +90,7 @@ public class tensorFlowAutoLeft extends LinearOpMode {
     boolean inLeft = false;
     boolean inMiddle = false;
     boolean inRight = false;
+    double timeOffset = 0;
     private ElapsedTime runtime = new ElapsedTime();
 
     private DcMotor FrontRightMotor, FrontLeftMotor, BackRightMotor, BackLeftMotor;
@@ -150,6 +152,11 @@ public class tensorFlowAutoLeft extends LinearOpMode {
         parameters.mode = BNO055IMU.SensorMode.IMU;
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.loggingEnabled = false;
+
+        FrontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        FrontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        BackLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        BackRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Retrieve and initialize the IMU. We expect the IMU to be attached to an I2C port
         // on a Core Device Interface Module, configured to be a sensor of type "AdaFruit IMU",
@@ -214,10 +221,18 @@ public class tensorFlowAutoLeft extends LinearOpMode {
                 // Create and store variable of its position with if statements
                 if (leftVal > 150 && leftVal < 400) {
                     objPosition = 2; // Middle
+
                 } else if (leftVal >= 400) {
                     objPosition = 3; // Far right
                 } else{
                     objPosition = 1; // Far left
+                    runtime.reset();
+                    holonomicDrive.autoDrive(90, 0.6);
+                    while (opModeIsActive() && runtime.seconds() < 0.20) {
+
+                    }
+                    holonomicDrive.stopMoving();
+                    timeOffset = 0.10;
                 }
                 telemetry.addData("Location: ", objPosition);
                 telemetry.addData("LeftValue: ", leftVal);
@@ -225,35 +240,27 @@ public class tensorFlowAutoLeft extends LinearOpMode {
                 //sleep(50000);
 
 
-                // Execute movements
-                runtime.reset();
-                holonomicDrive.autoDrive(180, 0.5);
-                while (opModeIsActive() && runtime.seconds() < 2.95) {
-
-                }
-                holonomicDrive.stopMoving();
-                runtime.reset();
-
+                //  xecute movements
                 runtime.reset();
                 holonomicDrive.autoDrive(0, 0.5);
-                while (opModeIsActive() && runtime.seconds() < 0.45) {
+                while (opModeIsActive() && runtime.seconds() < 2.3) {
 
                 }
                 holonomicDrive.stopMoving();
                 runtime.reset();
 
-                //Gyro.rotate(-45, 0.3);
+                runtime.reset();
+                holonomicDrive.autoDrive(180, 0.5);
+                while (opModeIsActive() && runtime.seconds() < 0.30) {
+
+                }
+                holonomicDrive.stopMoving();
+                runtime.reset();
+
+                Gyro.rotate(-85, 0.4);
                 telemetry.addData("Location: ", objPosition);
                 telemetry.update();
 
-                FrontLeftMotor.setPower(-0.5);
-                FrontRightMotor.setPower(-0.5);
-                BackLeftMotor.setPower(-0.5);
-                BackRightMotor.setPower(-0.5);
-                while (opModeIsActive() && runtime.seconds() < 0.95) {
-
-                }
-                holonomicDrive.stopMoving();
 
 
 
@@ -268,8 +275,8 @@ public class tensorFlowAutoLeft extends LinearOpMode {
 
 
                 runtime.reset();
-                holonomicDrive.autoDrive(180, 0.5);
-                while (opModeIsActive() && runtime.seconds() < 0.35) {
+                holonomicDrive.autoDrive(0, 0.5);
+                while (opModeIsActive() && runtime.seconds() < 0.35 - timeOffset) {
 
                 }
                 holonomicDrive.stopMoving();
@@ -284,22 +291,22 @@ public class tensorFlowAutoLeft extends LinearOpMode {
 
 
                 runtime.reset();
-                holonomicDrive.autoDrive(270, 0.5);
-                while (opModeIsActive() && runtime.seconds() < 1.75) {
+                holonomicDrive.autoDrive(90, 0.5);
+                while (opModeIsActive() && runtime.seconds() < 2) {
 
                 }
                 holonomicDrive.stopMoving();
                 sleep(500);
 
                 runtime.reset();
-                holonomicDrive.autoDrive(0, 0.9);
+                holonomicDrive.autoDrive(180, 1.0);
                 while (opModeIsActive() && runtime.seconds() < 2) {
 
                 }
                 holonomicDrive.stopMoving();
 
                 runtime.reset();
-                holonomicDrive.autoDrive(270, 0.5);
+                holonomicDrive.autoDrive(90, 0.5);
                 while (opModeIsActive() && runtime.seconds() < 1) {
 
                 }

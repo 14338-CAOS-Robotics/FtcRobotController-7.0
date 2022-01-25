@@ -43,7 +43,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
 
 @Autonomous(name="Holonomic Auto", group="Pushbot")
-//@Disabled
+@Disabled
 public class HolonomicAutonomousOpMode extends LinearOpMode {
 
     /* Declare OpMode members. */

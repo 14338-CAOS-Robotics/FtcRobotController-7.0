@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -59,7 +60,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "Tensor Flow Red Right", group = "Red")
+@Autonomous(name = "Tensor Flow Red Right Auto", group = "Red")
 public class TensorFlowRedRight extends LinearOpMode {
     /* Note: This sample uses the all-objects Tensor Flow model (FreightFrenzy_BCDM.tflite), which contains
      * the following 4 detectable objects
@@ -151,6 +152,11 @@ public class TensorFlowRedRight extends LinearOpMode {
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.loggingEnabled = false;
 
+        FrontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        FrontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        BackLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        BackRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
         // Retrieve and initialize the IMU. We expect the IMU to be attached to an I2C port
         // on a Core Device Interface Module, configured to be a sensor of type "AdaFruit IMU",
         // and named "imu".
@@ -225,33 +231,42 @@ public class TensorFlowRedRight extends LinearOpMode {
                 //sleep(50000);
 
 
-
                 // Execute movements
                 runtime.reset();
-                holonomicDrive.autoDrive(180, 0.5);
-                while (opModeIsActive() && runtime.seconds() < 2) {
+                holonomicDrive.autoDrive(0, 0.5);
+                while (opModeIsActive() && runtime.seconds() < 2.95) {
 
                 }
                 holonomicDrive.stopMoving();
                 runtime.reset();
 
+                runtime.reset();
+                holonomicDrive.autoDrive(180, 0.5);
+                while (opModeIsActive() && runtime.seconds() < 0.45) {
+
+                }
+                holonomicDrive.stopMoving();
+                runtime.reset();
 
                 //Gyro.rotate(-45, 0.3);
-                telemetry.addData("Gyro ", Gyro.imu.getAngularOrientation());
+                telemetry.addData("Location: ", objPosition);
                 telemetry.update();
 
                 FrontLeftMotor.setPower(0.5);
                 FrontRightMotor.setPower(0.5);
                 BackLeftMotor.setPower(0.5);
                 BackRightMotor.setPower(0.5);
-                while (opModeIsActive() && runtime.seconds() < 0.85) {
+
+
+                while (opModeIsActive() && runtime.seconds() < 0.95) {
 
                 }
                 holonomicDrive.stopMoving();
 
 
 
-
+                // Move Lift
+                //if (inLeft) {
                 LiftMotor.setTargetPosition(liftPos[objPosition]);
                 LiftMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
                 LiftMotor.setPower(0.5);
@@ -259,6 +274,14 @@ public class TensorFlowRedRight extends LinearOpMode {
                 while (opModeIsActive() && runtime.seconds() < 2) {
                 }
 
+
+                runtime.reset();
+                holonomicDrive.autoDrive(0, 0.5);
+                while (opModeIsActive() && runtime.seconds() < 0.35) {
+
+                }
+                holonomicDrive.stopMoving();
+                //}
                 //Deploy
 
                 intakeServo.setPower(-1);
@@ -269,7 +292,7 @@ public class TensorFlowRedRight extends LinearOpMode {
 
 
                 runtime.reset();
-                holonomicDrive.autoDrive(270, 0.5);
+                holonomicDrive.autoDrive(90, 0.5);
                 while (opModeIsActive() && runtime.seconds() < 1.75) {
 
                 }
@@ -277,8 +300,15 @@ public class TensorFlowRedRight extends LinearOpMode {
                 sleep(500);
 
                 runtime.reset();
-                holonomicDrive.autoDrive(0, 0.9);
+                holonomicDrive.autoDrive(180, 0.9);
                 while (opModeIsActive() && runtime.seconds() < 2) {
+
+                }
+                holonomicDrive.stopMoving();
+
+                runtime.reset();
+                holonomicDrive.autoDrive(90, 0.5);
+                while (opModeIsActive() && runtime.seconds() < 1) {
 
                 }
                 holonomicDrive.stopMoving();
